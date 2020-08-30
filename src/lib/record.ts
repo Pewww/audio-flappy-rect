@@ -1,4 +1,4 @@
-import MediaRecorder from '../@types/mediaRecorder';
+import {MediaRecorder} from '../@types/mediaRecorder';
 
 export default class Record {
   mediaRecorder: MediaRecorder;

@@ -17,9 +17,7 @@ interface MediaRecorderEventMap {
   warning: MediaRecorderErrorEvent ;
 }
 
-interface MediaRecorder extends EventTarget {
-  new (stream: MediaStream): MediaRecorder;
-
+export interface MediaRecorder extends EventTarget {
   readonly mimeType: string;
   readonly state: 'inactive' | 'recording' | 'paused';
   readonly stream: MediaStream;
@@ -48,4 +46,6 @@ interface MediaRecorder extends EventTarget {
   removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
 }
 
-export default MediaRecorder;
+export interface MediaRecorderClass {
+  new (stream: MediaStream): MediaRecorder;
+}
