@@ -1,6 +1,4 @@
-import {MediaRecorderClass} from './@types/mediaRecorder';
-
-export {};
+import {MediaRecorderClass} from './mediaRecorder';
 
 declare global {
   interface Window {
