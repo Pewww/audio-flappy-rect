@@ -1,7 +1,8 @@
 <html>
   <head>
-    <title>Audio</title>
+    <title>Audio Flappy Bird!</title>
     <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
     <style>
       html, body {
         width: 100%;
@@ -9,9 +10,47 @@
         margin: 0;
         padding: 0;
       }
+
+      * {
+        font-family: 'Indie Flower', cursive;
+      }
+
+      #map {
+        height: 100%;
+        background-color: #202020;
+      }
+
+      #map .start-cover {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+      }
+
+      .start-cover h1 {
+        font-size: 80px;
+        color: #fff;
+        margin: 0;
+      }
+
+      .start-cover button {
+        background: none;
+        border: none;
+        outline: none;
+        color: #fff;
+        font-size: 50px;
+        padding-top: 30px;
+        cursor: pointer;
+      }
     </style>
   </head>
   <body>
-    <div>Hello</div>
+    <div id="map">
+      <div class="start-cover">
+        <h1>Audio Flappy Bird</h1>
+        <button id="start-btn">Start!</button>
+      </div>
+    </div>
   </body>
 </html>
