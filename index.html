@@ -43,6 +43,20 @@
         padding-top: 30px;
         cursor: pointer;
       }
+
+      .start-cover.exiting {
+        animation: exiting .5s forwards; 
+      }
+
+      @keyframes exiting {
+        from {
+          opacity: 1;
+        }
+
+        to {
+          opacity: 0;
+        }
+      }
     </style>
   </head>
   <body>

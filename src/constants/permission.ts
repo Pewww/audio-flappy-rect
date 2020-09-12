@@ -6,7 +6,7 @@ const PROMPT = 'prompt';
 const DENIED = 'denied';
 
 export const PERMISSION_STATUS = {
-  [GRANTED]: GRANTED,
-  [PROMPT]: PROMPT,
-  [DENIED]: DENIED
+  GRANTED,
+  PROMPT,
+  DENIED
 };

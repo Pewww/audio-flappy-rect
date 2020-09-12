@@ -3,7 +3,6 @@ import ICharacter from '../@types/character';
 interface Subject {
   attach: (observer: ICharacter) => void;
   detach: (observer: ICharacter) => void;
-  // setAnalyser: () => void;
   connectAnalyser: () => void;
   analyseData: () => void;
 }
