@@ -2,6 +2,7 @@ import {getMapSize} from './lib/map';
 import {getPermission, checkPermission} from './lib/permission';
 import {PERMISSION_STATUS} from './constants/permission';
 import Game from './models/game';
+import {GAME_STATUS} from './constants/game';
 
 (async function main() {
   const startBtn = document.getElementById('start-btn');
@@ -50,15 +51,22 @@ async function startGame() {
   canvas.width = width;
   canvas.height = height;
 
+  let requestId = 0;
   const game = new Game(width, height, stream);
 
   game.start();
 
-  (function gameLoop() {
-    ctx.clearRect(0, 0, width, height);
+  (function gameLoop(timeStamp) {
+    requestId = window.requestAnimationFrame(gameLoop);
 
-    game.update(ctx); // update랑 draw가 따로 있네 draw에 ctx 넘기는 중
-    
-    window.requestAnimationFrame(gameLoop);
+    if (game.status === GAME_STATUS.OVER) {
+      game.stop();
+      window.cancelAnimationFrame(requestId);
+    } else {
+      ctx.clearRect(0, 0, width, height);
+
+      game.draw(ctx);
+      game.update(timeStamp);
+    }
   })();
 }

@@ -1,3 +1,4 @@
+import {VOLUMN_CHANGE_DEGREE} from '../constants/game';
 import Obstacle from './obstacle';
 
 interface ICharacterPosition {
@@ -12,6 +13,7 @@ export default class Character {
   mapWidth: number;
   mapHeight: number;
   position: ICharacterPosition;
+  isCollided: boolean;
 
   constructor(mapWidth: number, mapHeight: number, color: string) {
     this.width = 50;
@@ -19,7 +21,8 @@ export default class Character {
     this.color = color;
     this.mapHeight = mapWidth;
     this.mapHeight = mapHeight;
-    this.setPosition(50, this.mapHeight - 50);
+    this.setPosition(50, this.mapHeight - this.height);
+    this.isCollided = false;
   }
 
   private setPosition(x, y) {
@@ -36,13 +39,13 @@ export default class Character {
     } = this.filterToValidPosition(volumn);
 
     // 충돌 감지
-    this.detectCollision(x, y);
+    this.detectCollision(x, y, obstacles);
 
     // 위치 이동
-    this.draw(x, y, ctx);
+    this.updatePosition(x, y, ctx);
   }
 
-  private draw(x: number, y: number, ctx: CanvasRenderingContext2D) {
+  private updatePosition(x: number, y: number, ctx: CanvasRenderingContext2D) {
     this.setPosition(x, y);
 
     ctx.fillStyle = this.color;
@@ -56,7 +59,6 @@ export default class Character {
 
   private filterToValidPosition(volumn: number) {
     const x = this.position.x;
-    const VOLUMN_CHANGE_DEGREE = 5; // 변하는 높이의 정도(폭) 조절
     let y = this.mapHeight - (volumn * VOLUMN_CHANGE_DEGREE) - this.height;
 
     if (y < 0) {
@@ -69,7 +71,7 @@ export default class Character {
     };
   }
 
-  private detectCollision(x: number, y: number) {
+  private detectCollision(x: number, y: number, obstacles: Obstacle[]) {
     // check obstacles
     // if (x >= this.map.test.x - 50 || y < this.map.test.y) {
     //   this.isCollided = true;
