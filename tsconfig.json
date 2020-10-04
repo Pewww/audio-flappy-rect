@@ -9,10 +9,7 @@
       "es2017"
     ],
     "esModuleInterop": true,
-    "declaration": true,
-    "typeRoots": [
-      "./src/@types"
-    ]
+    "declaration": true
   },
   "include": [
     "src"
