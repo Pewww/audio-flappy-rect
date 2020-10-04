@@ -1,39 +1,24 @@
+import GameObject from './gameObject';
 import {getRandomDirection} from '../lib/obstacle';
-
-interface IObstaclePosition {
-  x: number;
-  y: number;
-}
 
 type TObstacleDirection = 'top' | 'bottom';
 
-export default class Obstacle {
-  width: number;
-  height: number;
-  color: string;
-  mapWidth: number;
-  mapHeight: number;
-  position: IObstaclePosition;
+export default class Obstacle extends GameObject {
   direction: TObstacleDirection;
 
   constructor(mapWidth: number, mapHeight: number, color: string) {
-    this.width = 60;
-    this.height = Math.floor(mapHeight / 2) + 50;
-    this.color = color;
-    this.mapWidth = mapWidth;
-    this.mapHeight = mapHeight;
+    super({
+      width: 60,
+      height: Math.floor(mapHeight / 2) + 50,
+      mapWidth,
+      mapHeight,
+      color
+    });
     this.direction = getRandomDirection();
     this.setPosition(this.mapWidth - this.width, this.direction === 'top'
       ? 0
       : this.mapHeight - this.height
     );
-  }
-
-  private setPosition(x, y) {
-    this.position = {
-      x,
-      y
-    };
   }
 
   public draw(ctx: CanvasRenderingContext2D) {

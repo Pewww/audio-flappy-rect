@@ -1,35 +1,20 @@
 import {VOLUMN_CHANGE_DEGREE} from '../constants/game';
 import Obstacle from './obstacle';
+import GameObject from './gameObject';
 
-interface ICharacterPosition {
-  x: number;
-  y: number;
-}
-
-export default class Character {
-  width: number;
-  height: number;
-  color: string;
-  mapWidth: number;
-  mapHeight: number;
-  position: ICharacterPosition;
+export default class Character extends GameObject {
   isCollided: boolean;
 
   constructor(mapWidth: number, mapHeight: number, color: string) {
-    this.width = 50;
-    this.height = 50;
-    this.color = color;
-    this.mapHeight = mapWidth;
-    this.mapHeight = mapHeight;
+    super({
+      width: 50,
+      height: 50,
+      mapWidth,
+      mapHeight,
+      color
+    });
     this.setPosition(50, this.mapHeight - this.height);
     this.isCollided = false;
-  }
-
-  private setPosition(x, y) {
-    this.position = {
-      x,
-      y
-    };
   }
 
   public notify(volumn: number, obstacles: Obstacle[], ctx: CanvasRenderingContext2D) {
