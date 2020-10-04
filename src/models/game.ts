@@ -12,18 +12,20 @@ export default class Game {
   status: TGameStatus;
   frameNo: number;
   score: number;
+  scoreElement: HTMLElement;
 
   constructor(mapWidth: number, mapHeight: number, stream: MediaStream) {
     this.mapWidth = mapWidth;
     this.mapHeight = mapHeight;
     this.obstacles = [
-      new Obstacle(this.mapWidth, this.mapHeight, '#fff')
+      new Obstacle(this.mapWidth, this.mapHeight, '#757eee')
     ];
     this.status = GAME_STATUS.WAITING;
     this.character = new Character(this.mapWidth, this.mapHeight, '#fff');
     this.audioController = new AudioController(this.character, this, stream);
     this.frameNo = 0;
     this.score = 0;
+    this.scoreElement = document.getElementById('score');
   }
 
   public start() {
@@ -40,6 +42,7 @@ export default class Game {
     this.obstacles.forEach(obstacle => {
       obstacle.draw(ctx)
     });
+    this.scoreElement.innerText = this.score.toString();
   }
 
   public update() {
@@ -56,7 +59,7 @@ export default class Game {
   private appendObstaclePerTime(no: number) {
     if (this.frameNo % no === 0) {
       this.obstacles.push(
-        new Obstacle(this.mapWidth, this.mapHeight, '#fff')
+        new Obstacle(this.mapWidth, this.mapHeight, '#757eee')
       );
     }
   }

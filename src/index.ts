@@ -15,6 +15,7 @@ async function handleClickStartBtn() {
   switch(permissionState) {
     case PERMISSION_STATUS.GRANTED: {
       await makeStartCoverInvisible();
+      makeScorePartVisible();
       startGame();
       break;
     }
@@ -35,6 +36,11 @@ async function handleClickStartBtn() {
 async function makeStartCoverInvisible() {
   const startCoverElement = document.getElementsByClassName('start-cover')[0];
   startCoverElement.classList.add('exiting');
+}
+
+function makeScorePartVisible() {
+  const scorePartElement = document.getElementsByClassName('score-part')[0];
+  scorePartElement.classList.add('entering');
 }
 
 async function startGame() {

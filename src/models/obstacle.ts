@@ -9,7 +9,7 @@ export default class Obstacle extends GameObject {
   constructor(mapWidth: number, mapHeight: number, color: string) {
     super({
       width: 60,
-      height: Math.floor(mapHeight / 2) + 50,
+      height: Math.floor(mapHeight / 2) + 20,
       mapWidth,
       mapHeight,
       color
