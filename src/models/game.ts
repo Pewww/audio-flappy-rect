@@ -11,6 +11,7 @@ export default class Game {
   obstacles: Obstacle[];
   status: TGameStatus;
   frameNo: number;
+  score: number;
 
   constructor(mapWidth: number, mapHeight: number, stream: MediaStream) {
     this.mapWidth = mapWidth;
@@ -22,6 +23,7 @@ export default class Game {
     this.character = new Character(this.mapWidth, this.mapHeight, '#fff');
     this.audioController = new AudioController(this.character, this, stream);
     this.frameNo = 0;
+    this.score = 0;
   }
 
   public start() {
@@ -46,7 +48,8 @@ export default class Game {
     }
 
     this.frameNo += 1;
-    this.appendObstaclePerTime(200);
+    this.appendObstaclePerTime(125);
+    this.checkScore();
     this.removeOutOfMapObstacle();
   }
 
@@ -58,11 +61,21 @@ export default class Game {
     }
   }
 
-  private removeOutOfMapObstacle() {
+  private checkIfObstacleIsOutOfMap() {
     const [firstObstacle] = this.obstacles;
 
-    if (firstObstacle.position.x + firstObstacle.width < 0) {
+    return (firstObstacle.position.x + firstObstacle.width < 0);
+  }
+
+  private removeOutOfMapObstacle() {
+    if (this.checkIfObstacleIsOutOfMap()) {
       this.obstacles = this.obstacles.slice(1, this.obstacles.length);
+    }
+  }
+
+  private checkScore() {
+    if (this.checkIfObstacleIsOutOfMap()) {
+      this.score += 1;
     }
   }
 }
