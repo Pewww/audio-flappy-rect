@@ -1,7 +1,7 @@
-import AudioCtx from './lib/audioCtx';
-import Character from './lib/character';
+import {getMapSize} from './lib/map';
 import {getPermission, checkPermission} from './lib/permission';
 import {PERMISSION_STATUS} from './constants/permission';
+import Game from './models/game';
 
 (async function main() {
   const startBtn = document.getElementById('start-btn');
@@ -20,6 +20,7 @@ async function handleClickStartBtn() {
     case PERMISSION_STATUS.PROMPT: {
       await getPermission();
       window.location.reload();
+      break;
     }
     case PERMISSION_STATUS.DENIED: {
       alert('마이크 액세스 권한이 차단된 상태입니다.');
@@ -38,8 +39,26 @@ async function makeStartCoverInvisible() {
 async function startGame() {
   const stream = await getPermission();
 
-  const audioCtx = new AudioCtx(stream);
-  const character = new Character();
+  const {
+    width,
+    height
+  } = getMapSize();
 
-  audioCtx.attach(character); // Attatch observer.
+  const canvas = document.getElementById('map') as HTMLCanvasElement;
+  const ctx = canvas.getContext('2d');
+
+  canvas.width = width;
+  canvas.height = height;
+
+  const game = new Game(width, height, stream);
+
+  game.start();
+
+  (function gameLoop() {
+    ctx.clearRect(0, 0, width, height);
+
+    game.update(ctx); // update랑 draw가 따로 있네 draw에 ctx 넘기는 중
+    
+    window.requestAnimationFrame(gameLoop);
+  })();
 }

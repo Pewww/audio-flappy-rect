@@ -15,12 +15,12 @@
         font-family: 'Indie Flower', cursive;
       }
 
-      #map {
+      #wrapper {
         height: 100%;
         background-color: #202020;
       }
 
-      #map .start-cover {
+      #wrapper .start-cover {
         position: absolute;
         top: 50%;
         left: 50%;
@@ -45,7 +45,7 @@
       }
 
       .start-cover.exiting {
-        animation: exiting .5s forwards; 
+        animation: exiting .5s forwards;
       }
 
       @keyframes exiting {
@@ -55,16 +55,18 @@
 
         to {
           opacity: 0;
+          display: none;
         }
       }
     </style>
   </head>
   <body>
-    <div id="map">
+    <div id="wrapper">
       <div class="start-cover">
         <h1>Audio Flappy Bird</h1>
         <button id="start-btn">Start!</button>
       </div>
+      <canvas id="map"></canvas>
     </div>
   </body>
 </html>
