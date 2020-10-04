@@ -14,8 +14,8 @@ async function handleClickStartBtn() {
   
   switch(permissionState) {
     case PERMISSION_STATUS.GRANTED: {
-      await makeStartCoverInvisible();
-      makeScorePartVisible();
+      toggleStartCoverVisibility('exiting', 'entering');
+      toggleScorePartVisibility('entering', 'exiting');
       startGame();
       break;
     }
@@ -33,14 +33,16 @@ async function handleClickStartBtn() {
   }
 }
 
-async function makeStartCoverInvisible() {
+function toggleStartCoverVisibility(cnToAdd: string, cnToRemove?: string) {
   const startCoverElement = document.getElementsByClassName('start-cover')[0];
-  startCoverElement.classList.add('exiting');
+  startCoverElement.classList.remove(cnToRemove);
+  startCoverElement.classList.add(cnToAdd);
 }
 
-function makeScorePartVisible() {
+function toggleScorePartVisibility(cnToAdd: string, cnToRemove?: string) {
   const scorePartElement = document.getElementsByClassName('score-part')[0];
-  scorePartElement.classList.add('entering');
+  scorePartElement.classList.remove(cnToRemove);
+  scorePartElement.classList.add(cnToAdd);
 }
 
 async function startGame() {
@@ -68,6 +70,7 @@ async function startGame() {
     if (game.status === GAME_STATUS.OVER) {
       game.stop();
       window.cancelAnimationFrame(requestId);
+      toggleStartCoverVisibility('entering', 'exiting');
     } else {
       ctx.clearRect(0, 0, width, height);
 
