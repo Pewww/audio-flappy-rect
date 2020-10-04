@@ -72,9 +72,16 @@ export default class Character {
   }
 
   private detectCollision(x: number, y: number, obstacles: Obstacle[]) {
-    // check obstacles
-    // if (x >= this.map.test.x - 50 || y < this.map.test.y) {
-    //   this.isCollided = true;
-    // }
+    for (const obstacle of obstacles) {
+      const isXPositionCollided = x + this.width > obstacle.position.x;
+      const isYPositionCollided = obstacle.direction === 'top'
+        ? y < obstacle.position.y + obstacle.height
+        : y > obstacle.position.y;
+
+      if (isXPositionCollided && isYPositionCollided) {
+        this.isCollided = true;
+        break;
+      }
+    }
   }
 }
