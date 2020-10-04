@@ -1,4 +1,5 @@
 import Character from './character';
+import Game from './game';
 
 export default class AudioController {
   private audioCtx: AudioContext;
@@ -7,14 +8,16 @@ export default class AudioController {
   private bufferLength: number;
   private dataArray: Uint8Array;
   private character: Character;
+  private game: Game;
 
-  constructor(character: Character, stream: MediaStream) {
+  constructor(character: Character, game: Game, stream: MediaStream) {
     this.audioCtx = new AudioContext();
     this.source = this.audioCtx.createMediaStreamSource(stream);
     this.setAnalyser();
     this.bufferLength = this.analyser.frequencyBinCount;
     this.dataArray = new Uint8Array(this.bufferLength);
     this.character = character;
+    this.game = game;
   }
 
   private setAnalyser() {
@@ -30,12 +33,12 @@ export default class AudioController {
     this.source.disconnect(this.analyser);
   }
 
-  public analyseData() {
+  public analyseData(ctx: CanvasRenderingContext2D) {
     this.analyser.getByteFrequencyData(this.dataArray);
 
     const volume = this.convertDataToVolume();
 
-    this.character.notify(volume);
+    this.character.notify(volume, this.game.obstacles, ctx);
   }
 
   private convertDataToVolume() {
