@@ -18,7 +18,7 @@ export default class Obstacle {
 
   constructor(mapWidth: number, mapHeight: number, color: string) {
     this.width = 60;
-    this.height = 400;
+    this.height = Math.floor(mapHeight / 2) + 50;
     this.color = color;
     this.mapWidth = mapWidth;
     this.mapHeight = mapHeight;
@@ -38,7 +38,7 @@ export default class Obstacle {
 
   public draw(ctx: CanvasRenderingContext2D) {
     this.setPosition(
-      this.position.x - 2,
+      this.position.x - 3,
       this.position.y
     );
 
