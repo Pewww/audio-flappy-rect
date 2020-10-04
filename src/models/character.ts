@@ -73,7 +73,8 @@ export default class Character {
 
   private detectCollision(x: number, y: number, obstacles: Obstacle[]) {
     for (const obstacle of obstacles) {
-      const isXPositionCollided = x + this.width > obstacle.position.x;
+      const isXPositionCollided = x + this.width > obstacle.position.x
+        && obstacle.position.x > 0;
       const isYPositionCollided = obstacle.direction === 'top'
         ? y < obstacle.position.y + obstacle.height
         : y > obstacle.position.y;

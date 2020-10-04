@@ -56,7 +56,7 @@ async function startGame() {
 
   game.start();
 
-  (function gameLoop(timeStamp) {
+  (function gameLoop() {
     requestId = window.requestAnimationFrame(gameLoop);
 
     if (game.status === GAME_STATUS.OVER) {
@@ -66,7 +66,7 @@ async function startGame() {
       ctx.clearRect(0, 0, width, height);
 
       game.draw(ctx);
-      game.update(timeStamp);
+      game.update();
     }
   })();
 }

@@ -10,6 +10,7 @@ export default class Game {
   audioController: AudioController;
   obstacles: Obstacle[];
   status: TGameStatus;
+  frameNo: number;
 
   constructor(mapWidth: number, mapHeight: number, stream: MediaStream) {
     this.mapWidth = mapWidth;
@@ -20,6 +21,7 @@ export default class Game {
     this.status = GAME_STATUS.WAITING;
     this.character = new Character(this.mapWidth, this.mapHeight, '#fff');
     this.audioController = new AudioController(this.character, this, stream);
+    this.frameNo = 0;
   }
 
   public start() {
@@ -28,7 +30,6 @@ export default class Game {
   }
 
   public stop() {
-    this.status = GAME_STATUS.OVER;
     this.audioController.disconnectAnalyser();
   }
 
@@ -39,13 +40,29 @@ export default class Game {
     });
   }
 
-  public update(timeStamp: number) {
-    // 충돌 감지 후 true 면 over
-    // const second = Math.floor(timeStamp / 1000);
+  public update() {
+    if (this.character.isCollided) {
+      this.status = GAME_STATUS.OVER;
+    }
 
-    // if (second % 5 === 0) {
-    //   this.status = GAME_STATUS.OVER;
-    //   // this.obstacles.push(new Obstacle());
-    // }
+    this.frameNo += 1;
+    this.appendObstaclePerTime(200);
+    this.removeOutOfMapObstacle();
+  }
+
+  private appendObstaclePerTime(no: number) {
+    if (this.frameNo % no === 0) {
+      this.obstacles.push(
+        new Obstacle(this.mapWidth, this.mapHeight, '#fff')
+      );
+    }
+  }
+
+  private removeOutOfMapObstacle() {
+    const [firstObstacle] = this.obstacles;
+
+    if (firstObstacle.position.x + firstObstacle.width < 0) {
+      this.obstacles = this.obstacles.slice(1, this.obstacles.length);
+    }
   }
 }
