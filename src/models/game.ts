@@ -2,6 +2,7 @@ import Character from './character';
 import AudioController from './audioController';
 import Obstacle from './obstacle';
 import {TGameStatus, GAME_STATUS} from '../constants/game';
+import {getRandomHeights} from '../lib/obstacle';
 
 export default class Game {
   mapWidth: number;
@@ -17,15 +18,22 @@ export default class Game {
   constructor(mapWidth: number, mapHeight: number, stream: MediaStream) {
     this.mapWidth = mapWidth;
     this.mapHeight = mapHeight;
-    this.obstacles = [
-      new Obstacle(this.mapWidth, this.mapHeight, '#757eee')
-    ];
     this.status = GAME_STATUS.WAITING;
     this.character = new Character(this.mapWidth, this.mapHeight, '#fff');
     this.audioController = new AudioController(this.character, this, stream);
     this.frameNo = 0;
     this.score = 0;
     this.scoreElement = document.getElementById('score');
+
+    const {
+      heightFromTop,
+      heightFromBottom
+    } = getRandomHeights(this.mapHeight, 300);
+
+    this.obstacles = [
+      new Obstacle(heightFromTop, this.mapWidth, this.mapHeight, '#757eee', 'top'),
+      new Obstacle(heightFromBottom, this.mapWidth, this.mapHeight, '#757eee', 'bottom')
+    ];
   }
 
   public start() {
@@ -58,21 +66,28 @@ export default class Game {
 
   private appendObstaclePerTime(no: number) {
     if (this.frameNo % no === 0) {
+      const {
+        heightFromTop,
+        heightFromBottom
+      } = getRandomHeights(this.mapHeight, 300);
+
       this.obstacles.push(
-        new Obstacle(this.mapWidth, this.mapHeight, '#757eee')
+        new Obstacle(heightFromTop, this.mapWidth, this.mapHeight, '#757eee', 'top'),
+        new Obstacle(heightFromBottom, this.mapWidth, this.mapHeight, '#757eee', 'bottom')
       );
     }
   }
 
   private checkIfObstacleIsOutOfMap() {
-    const [firstObstacle] = this.obstacles;
+    const [firstObstacle, secondObstacle] = this.obstacles;
 
-    return (firstObstacle.position.x + firstObstacle.width < 0);
+    return firstObstacle.position.x + firstObstacle.width < 0
+      && secondObstacle.position.x + secondObstacle.width < 0;
   }
 
   private removeOutOfMapObstacle() {
     if (this.checkIfObstacleIsOutOfMap()) {
-      this.obstacles = this.obstacles.slice(1, this.obstacles.length);
+      this.obstacles = this.obstacles.slice(2, this.obstacles.length);
     }
   }
 

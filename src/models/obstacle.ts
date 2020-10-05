@@ -1,20 +1,19 @@
 import GameObject from './gameObject';
-import {getRandomDirection} from '../lib/obstacle';
 
 type TObstacleDirection = 'top' | 'bottom';
 
 export default class Obstacle extends GameObject {
   direction: TObstacleDirection;
 
-  constructor(mapWidth: number, mapHeight: number, color: string) {
+  constructor(height: number, mapWidth: number, mapHeight: number, color: string, direction: TObstacleDirection) {
     super({
       width: 60,
-      height: Math.floor(mapHeight / 2) + 20,
+      height,
       mapWidth,
       mapHeight,
       color
     });
-    this.direction = getRandomDirection();
+    this.direction = direction;
     this.setPosition(this.mapWidth - this.width, this.direction === 'top'
       ? 0
       : this.mapHeight - this.height
