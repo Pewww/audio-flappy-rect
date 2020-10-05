@@ -21,6 +21,6 @@ Webpack과 Typescript로 개발 환경을 세팅하였고, Canvas를 활용하�
 
 <img width="700" alt="게임 시작 화면" src="https://user-images.githubusercontent.com/23455736/95011485-011f5f80-066c-11eb-9a9f-cf27906ee83c.png">
 
-<img width="700" alt="게임 중 화면" src="https://user-images.githubusercontent.com/23455736/95011515-2613d280-066c-11eb-9cd6-1f058626928e.png">
+<img width="700" alt="게임 중 화면" src="https://user-images.githubusercontent.com/23455736/95046944-2a99c300-0720-11eb-81ed-611a8e65a9d5.png">
 
-<img width="700" alt="게임 종료 화면" src="https://user-images.githubusercontent.com/23455736/95011624-e8fc1000-066c-11eb-91c4-ba5c1f6a1334.png">
+<img width="700" alt="게임 종료 화면" src="https://user-images.githubusercontent.com/23455736/95046900-10f87b80-0720-11eb-984d-a82351afdf9b.png">
