@@ -42,6 +42,7 @@ export default class Game {
   }
 
   public stop() {
+    this.status = GAME_STATUS.OVER;
     this.audioController.disconnectAnalyser();
   }
 

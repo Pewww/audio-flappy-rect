@@ -68,7 +68,6 @@ async function startGame() {
     requestId = window.requestAnimationFrame(gameLoop);
 
     if (game.status === GAME_STATUS.OVER) {
-      game.stop();
       window.cancelAnimationFrame(requestId);
       toggleStartCoverVisibility('entering', 'exiting');
     } else {
