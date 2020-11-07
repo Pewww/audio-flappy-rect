@@ -80,10 +80,9 @@ export default class Game {
   }
 
   private checkIfObstacleIsOutOfMap() {
-    const [firstObstacle, secondObstacle] = this.obstacles;
+    const [standardObstacle] = this.obstacles;
 
-    return firstObstacle.position.x + firstObstacle.width < 0
-      && secondObstacle.position.x + secondObstacle.width < 0;
+    return standardObstacle.position.x + standardObstacle.width < 0;
   }
 
   private removeOutOfMapObstacle() {
