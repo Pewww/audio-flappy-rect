@@ -11,11 +11,7 @@ Webpack과 Typescript로 개발 환경을 세팅하였고, Canvas를 활용하�
 소리를 인식하기 위해 [AudioContext](https://developer.mozilla.org/ko/docs/Web/API/AudioContext) API를 활용하였습니다.
 
 ## 방법
-
-소리만 내면 됩니다 :D<br>
-**꿀팁:** 크게 휴~~라고 숨을 들이마시면 좀 더 쉽게 위로 이동하더군요..!
-
-[Game Start!](https://d2f284kduxojh9.cloudfront.net/)
+개선 후 다시 올릴 예정입니다.
 
 ## 화면
 
