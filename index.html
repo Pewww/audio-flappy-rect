@@ -17,7 +17,7 @@
 
       #wrapper {
         height: 100%;
-        background-color: #202020;
+        background-color: #272727;
       }
 
       #wrapper .start-cover {
@@ -26,10 +26,11 @@
         left: 50%;
         transform: translate(-50%, -50%);
         text-align: center;
+        z-index: 2;
       }
 
       .start-cover h1 {
-        font-size: 80px;
+        font-size: 48px;
         color: #fff;
         margin: 0;
       }
@@ -78,7 +79,7 @@
         top: 50px;
         left: 50%;
         transform: translateX(-50%);
-        font-size: 55px;
+        font-size: 36px;
         color: #fff;
         z-index: 10000;
         opacity: 0;
@@ -86,6 +87,23 @@
 
       .score-part #score {
         text-align: center;
+      }
+
+      .canvas-wrapper {
+        position: absolute;
+        width: 480px;
+        height: 640px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border: 2px solid #fff;
+        background-color: #202020;
+      }
+
+      @media screen and (max-width: 480px) {
+        .canvas-wrapper {
+          width: 100%;
+        }
       }
     </style>
   </head>
@@ -95,11 +113,13 @@
         <h1>Audio Flappy Rect</h1>
         <button id="start-btn">Start!</button>
       </div>
-      <div class="score-part">
-        Score
-        <div id="score"></div>
+      <div class="canvas-wrapper">
+        <div class="score-part">
+          Score
+          <div id="score"></div>
+        </div>
+        <canvas id="map"></canvas>
       </div>
-      <canvas id="map"></canvas>
     </div>
   </body>
 </html>

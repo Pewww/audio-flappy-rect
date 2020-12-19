@@ -7,7 +7,7 @@ export default class Obstacle extends GameObject {
 
   constructor(height: number, mapWidth: number, mapHeight: number, color: string, direction: TObstacleDirection) {
     super({
-      width: 60,
+      width: 50,
       height,
       mapWidth,
       mapHeight,
@@ -22,7 +22,7 @@ export default class Obstacle extends GameObject {
 
   public draw(ctx: CanvasRenderingContext2D) {
     this.setPosition(
-      this.position.x - 3,
+      this.position.x - 2,
       this.position.y
     );
 

@@ -28,7 +28,7 @@ export default class Game {
     const {
       heightFromTop,
       heightFromBottom
-    } = getRandomHeights(this.mapHeight, 300);
+    } = getRandomHeights(this.mapHeight, 240);
 
     this.obstacles = [
       new Obstacle(heightFromTop, this.mapWidth, this.mapHeight, '#757eee', 'top'),
@@ -70,7 +70,7 @@ export default class Game {
       const {
         heightFromTop,
         heightFromBottom
-      } = getRandomHeights(this.mapHeight, 300);
+      } = getRandomHeights(this.mapHeight, 240);
 
       this.obstacles.push(
         new Obstacle(heightFromTop, this.mapWidth, this.mapHeight, '#757eee', 'top'),

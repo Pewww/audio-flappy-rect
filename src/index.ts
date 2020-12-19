@@ -1,8 +1,7 @@
-import {getMapSize} from './lib/map';
 import {getPermission, checkPermission} from './lib/permission';
 import {PERMISSION_STATUS} from './constants/permission';
 import Game from './models/game';
-import {GAME_STATUS} from './constants/game';
+import {GAME_STATUS, MAP_SIZE} from './constants/game';
 
 (async function main() {
   const startBtn = document.getElementById('start-btn');
@@ -47,20 +46,19 @@ function toggleScorePartVisibility(cnToAdd: string, cnToRemove?: string) {
 
 async function startGame() {
   const stream = await getPermission();
-
   const {
-    width,
-    height
-  } = getMapSize();
+    width: mapWidth,
+    height: mapHeight
+  } = MAP_SIZE;
 
   const canvas = document.getElementById('map') as HTMLCanvasElement;
   const ctx = canvas.getContext('2d');
 
-  canvas.width = width;
-  canvas.height = height;
+  canvas.width = mapWidth;
+  canvas.height = mapHeight;
 
   let requestId = 0;
-  const game = new Game(width, height, stream);
+  const game = new Game(mapWidth, mapHeight, stream);
 
   game.start();
 
@@ -71,7 +69,7 @@ async function startGame() {
       window.cancelAnimationFrame(requestId);
       toggleStartCoverVisibility('entering', 'exiting');
     } else {
-      ctx.clearRect(0, 0, width, height);
+      ctx.clearRect(0, 0, mapWidth, mapHeight);
 
       game.draw(ctx);
       game.update();

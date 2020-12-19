@@ -7,8 +7,8 @@ export default class Character extends GameObject {
 
   constructor(mapWidth: number, mapHeight: number, color: string) {
     super({
-      width: 50,
-      height: 50,
+      width: 40,
+      height: 40,
       mapWidth,
       mapHeight,
       color
@@ -40,6 +40,16 @@ export default class Character extends GameObject {
       this.width,
       this.height
     );
+
+    this.drawCharacterFace(x, y, ctx);
+  }
+
+  private drawCharacterFace(x: number, y: number, ctx: CanvasRenderingContext2D) {
+    ctx.fillStyle = '#202020';
+
+    ctx.fillRect(x + 7, y + 12, 10, 7);
+    ctx.fillRect(x + this.width - 17, y + 12, 10, 7);
+    ctx.fillRect(x + 7, y + 24, this.width - 14, 7);
   }
 
   private filterToValidPosition(volumn: number) {
