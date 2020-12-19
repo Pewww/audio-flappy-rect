@@ -67,17 +67,18 @@ export default class Character extends GameObject {
   }
 
   private detectCollision(x: number, y: number, obstacles: Obstacle[]) {
-    for (const obstacle of obstacles) {
-      const isXPositionCollided = x + this.width > obstacle.position.x
-        && obstacle.position.x > 0;
-      const isYPositionCollided = obstacle.direction === 'top'
-        ? y < obstacle.position.y + obstacle.height
-        : y > obstacle.position.y;
+    const [topObstacle, bottomObstacle] = obstacles;
 
-      if (isXPositionCollided && isYPositionCollided) {
-        this.isCollided = true;
-        break;
-      }
+    // 기준점이 topObstacle이 되어도 무방함
+    const isXPositionCollided = x + this.width > bottomObstacle.position.x
+      && bottomObstacle.position.x > 0;
+
+    const isYPositionCollided = y < (topObstacle.position.y + topObstacle.height)
+      || y > (this.mapHeight - bottomObstacle.height - this.height);
+
+    if (isXPositionCollided && isYPositionCollided) {
+      this.isCollided = true;
+      return;
     }
   }
 }
