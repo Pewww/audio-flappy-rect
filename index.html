@@ -20,7 +20,17 @@
         background-color: #272727;
       }
 
-      #wrapper .start-cover {
+      a {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+      }
+
+      a img {
+        width: 50px;
+      }
+
+      .start-cover {
         position: absolute;
         top: 50%;
         left: 50%;
@@ -109,6 +119,13 @@
   </head>
   <body>
     <div id="wrapper">
+      <a
+        href="https://github.com/Pewww/audio-flappy-bird"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img src="./src/assets/images/github-logo.png" alt="깃허브 링크 이동">
+      </a>
       <div class="start-cover">
         <h1>Audio Flappy Rect</h1>
         <button id="start-btn">Start!</button>
