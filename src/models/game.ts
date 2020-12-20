@@ -1,5 +1,5 @@
 import Character from './character';
-import AudioController from './audioController';
+import GameAudioController from './gameAudioController';
 import Obstacle from './obstacle';
 import {TGameStatus, GAME_STATUS} from '../constants/game';
 import {getRandomHeights} from '../lib/obstacle';
@@ -8,7 +8,7 @@ export default class Game {
   mapWidth: number;
   mapHeight: number;
   character: Character;
-  audioController: AudioController;
+  gameAudioController: GameAudioController;
   obstacles: Obstacle[];
   status: TGameStatus;
   frameNo: number;
@@ -20,7 +20,7 @@ export default class Game {
     this.mapHeight = mapHeight;
     this.status = GAME_STATUS.WAITING;
     this.character = new Character(this.mapWidth, this.mapHeight, '#fff');
-    this.audioController = new AudioController(this.character, this, stream);
+    this.gameAudioController = new GameAudioController(this.character, this, stream);
     this.frameNo = 0;
     this.score = 0;
     this.scoreElement = document.getElementById('score');
@@ -38,16 +38,16 @@ export default class Game {
 
   public start() {
     this.status = GAME_STATUS.RUNNING;
-    this.audioController.connectAnalyser();
+    this.gameAudioController.connectAnalyser();
   }
 
   public stop() {
     this.status = GAME_STATUS.OVER;
-    this.audioController.disconnectAnalyser();
+    this.gameAudioController.disconnectAnalyser();
   }
 
   public draw(ctx: CanvasRenderingContext2D) {
-    this.audioController.analyseData(ctx);
+    this.gameAudioController.notifyAnalysedDataToCharacter(ctx);
     this.obstacles.forEach(obstacle => {
       obstacle.draw(ctx)
     });
