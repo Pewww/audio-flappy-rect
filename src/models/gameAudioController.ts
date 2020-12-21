@@ -18,13 +18,4 @@ export default class GameAudioController extends AudioController {
     const volume = this.convertDataToVolume();
     this.character.notify(volume, this.game.obstacles, ctx);
   }
-
-  private convertDataToVolume() {
-    const volumes = this.dataArray.reduce(
-      (prev, curr) => prev + curr, 0
-    );
-    const averageVolume = Math.floor(volumes / this.bufferLength);
-    
-    return averageVolume;
-  }
 }

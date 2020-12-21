@@ -18,6 +18,14 @@ export default class AudioController {
     this.analyser.fftSize = 1024;
   }
 
+  protected convertDataToVolume() {
+    const volume = this.dataArray.reduce(
+      (prev, curr) => prev + curr, 0
+    );
+    
+    return volume;
+  }
+
   public connectAnalyser() {
     this.source.connect(this.analyser);
   }
