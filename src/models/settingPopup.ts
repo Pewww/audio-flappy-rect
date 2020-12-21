@@ -32,6 +32,7 @@ export default class SettingPopup extends Popup {
   ) {
     this.renderTimerText(this.timer);
 
+    // @ts-ignore
     this.timerId = setInterval(() => {
       this.timer -= 1;
 
