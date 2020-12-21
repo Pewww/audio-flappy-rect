@@ -1,4 +1,4 @@
-import {VOLUMN_CHANGE_DEGREE} from '../constants/game';
+import {DEFAULT_MAX_VOLUME} from '../constants/game';
 import Obstacle from './obstacle';
 import GameObject from './gameObject';
 
@@ -53,8 +53,13 @@ export default class Character extends GameObject {
   }
 
   private filterToValidPosition(volumn: number) {
+    const maxVolume = parseInt(
+      localStorage.getItem('audio-flappy-bird-max-volume'),
+      10
+    ) || DEFAULT_MAX_VOLUME;
+
     const x = this.position.x;
-    let y = this.mapHeight - (volumn * VOLUMN_CHANGE_DEGREE) - this.height;
+    let y = Math.ceil(this.mapHeight * (1 - (volumn / maxVolume))) - this.height;
 
     if (y < 0) {
       y = 0;

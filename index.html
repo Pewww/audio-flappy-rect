@@ -30,31 +30,6 @@
         width: 50px;
       }
 
-      .start-cover {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        text-align: center;
-        z-index: 2;
-      }
-
-      .start-cover h1 {
-        font-size: 48px;
-        color: #fff;
-        margin: 0;
-      }
-
-      .start-cover button {
-        background: none;
-        border: none;
-        outline: none;
-        color: #fff;
-        font-size: 50px;
-        padding-top: 30px;
-        cursor: pointer;
-      }
-
       .exiting {
         animation: exiting .5s forwards;
       }
@@ -84,21 +59,6 @@
         }
       }
 
-      .score-part {
-        position: absolute;
-        top: 50px;
-        left: 50%;
-        transform: translateX(-50%);
-        font-size: 36px;
-        color: #fff;
-        z-index: 10000;
-        opacity: 0;
-      }
-
-      .score-part #score {
-        text-align: center;
-      }
-
       .canvas-wrapper {
         position: absolute;
         width: 480px;
@@ -110,9 +70,130 @@
         background-color: #202020;
       }
 
+      .start-cover {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+      }
+
+      .start-cover h1 {
+        font-size: 48px;
+        color: #fff;
+        margin: 0;
+      }
+
+      .start-cover button {
+        background: none;
+        border: none;
+        outline: none;
+        color: #fff;
+        font-size: 50px;
+        padding-top: 30px;
+        cursor: pointer;
+      }
+
+      .score-part {
+        position: absolute;
+        top: 50px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 36px;
+        color: #fff;
+        z-index: 2;
+        opacity: 0;
+      }
+
+      .score-part #score {
+        text-align: center;
+      }
+
+      .setting-btn {
+        position: absolute;
+        width: 32px;
+        top: 20px;
+        right: 20px;
+        cursor: pointer;
+      }
+
+      #popup-wrapper {
+        position: fixed;
+        z-index: 3;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(18, 18, 18, .4);
+        display: none;
+      }
+
+      #popup {
+        box-sizing: border-box;
+        position: absolute;
+        padding: 20px;
+        width: 80%;
+        height: 70%;
+        min-width: 360px;
+        min-height: 460px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #3f3f3f;
+        border-radius: 4px;
+        text-align: center;
+        display: none;
+      }
+
+      #popup h2 {
+        color: #fff;
+      }
+
+      #popup button {
+        font-size: 40px;
+        color: #fff;
+        font-weight: bold;
+        letter-spacing: 1px;
+        border: none;
+        background: none;
+        cursor: pointer;
+        outline: none;
+        padding-top: 25px;
+      }
+
+      #popup #timer {
+        font-size: 48px;
+        font-weight: bold;
+        color: #fff;
+        margin-top: 40px;
+      }
+
+      #popup #volume {
+        font-size: 40px;
+        color: #fff;
+      }
+
+      #popup #max-volume {
+        font-size: 36px;
+        color: #fff;
+      }
+
+      #popup #redo-save-btn-wrapper {
+        margin-top: 40px;
+        display: none;
+      }
+
+      #popup #redo-save-btn-wrapper img {
+        width: 40px;
+        margin: 0 25px;
+        cursor: pointer;
+      }
+
       @media screen and (max-width: 480px) {
         .canvas-wrapper {
           width: 100%;
+        }
+
+        a {
+          display: none;
         }
       }
     </style>
@@ -124,16 +205,42 @@
         target="_blank"
         rel="noopener noreferrer"
       >
-        <img src="./src/assets/images/github-logo.png" alt="깃허브 링크 이동">
+        <img src="./src/assets/icons/github-logo.png" alt="깃허브 링크 이동">
       </a>
-      <div class="start-cover">
-        <h1>Audio Flappy Rect</h1>
-        <button id="start-btn">Start!</button>
-      </div>
       <div class="canvas-wrapper">
+        <div class="start-cover">
+          <h1>Audio Flappy Rect</h1>
+          <button id="start-btn">Start!</button>
+        </div>
         <div class="score-part">
           Score
           <div id="score"></div>
+        </div>
+        <img
+          src="./src/assets/icons/setting.png"
+          alt="목소리 설정하기"
+          class="setting-btn"
+        >
+        <div id="popup-wrapper">
+          <div id="popup">
+            <h2>Make the highest sound you can make in the game for 5 seconds.</h2>
+            <button id="setting-start-btn">Okay!</button>
+            <div id="timer"></div>
+            <div id="volume"></div>
+            <div id="max-volume"></div>
+            <div id="redo-save-btn-wrapper">
+              <img
+                src="./src/assets/icons/redo.png"
+                alt="다시 측정하기"
+                id="redo-btn"
+              >
+              <img
+                src="./src/assets/icons/save.png"
+                alt="저장하기"
+                id="save-btn"
+              >
+            </div>
+          </div>
         </div>
         <canvas id="map"></canvas>
       </div>
