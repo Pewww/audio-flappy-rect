@@ -18,6 +18,12 @@
 Webpack과 Typescript로 개발 환경을 세팅하였고, Canvas를 활용하여 프로젝트를 진행하였습니다.<br>
 소리를 인식하기 위해 [AudioContext](https://developer.mozilla.org/ko/docs/Web/API/AudioContext) API를 활용하였습니다.
 
-## 시작!
+## 방법
 
-[Game Start](---)
+**[Game Start](https://d3g50b71je6yeq.cloudfront.net)**
+
+1. 세팅 아이콘을 눌러 게임 내에서 사용할(?) 가장 큰 소리를 설정한다. (기본 값은 20,000)
+
+2. Start! 버튼을 눌러 게임을 시작한다.
+
+3. 소리를 통해 장애물을 요리조리 피하면서 점수를 쌓는다!
