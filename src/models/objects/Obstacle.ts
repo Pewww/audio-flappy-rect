@@ -1,4 +1,4 @@
-import GameObject from './gameObject';
+import GameObject from './GameObject';
 
 type TObstacleDirection = 'top' | 'bottom';
 

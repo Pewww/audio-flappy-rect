@@ -1,5 +1,5 @@
-import AudioController from './audioController';
-import SettingPopup from './settingPopup';
+import AudioController from './AudioController';
+import {SettingPopup} from '../popups';
 
 export default class SettingAudioController extends AudioController {
   private settingPopup: SettingPopup;

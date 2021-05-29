@@ -1,6 +1,6 @@
-import AudioController from './audioController';
-import Character from './character';
-import Game from './game';
+import AudioController from './AudioController';
+import {Character} from '../objects';
+import Game from '../Game';
 
 export default class GameAudioController extends AudioController {
   private character: Character;

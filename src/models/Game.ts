@@ -1,6 +1,5 @@
-import Character from './character';
-import GameAudioController from './gameAudioController';
-import Obstacle from './obstacle';
+import {Character, Obstacle} from './objects';
+import {GameAudioController} from './controllers';
 import {TGameStatus, GAME_STATUS} from '../constants/game';
 import {getRandomHeights} from '../lib/obstacle';
 

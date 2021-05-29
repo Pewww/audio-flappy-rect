@@ -1,5 +1,5 @@
-import Popup from './popup';
-import {SECOND} from '../constants/time';
+import Popup from './Popup';
+import {SECOND} from '../../constants/time';
 
 export default class SettingPopup extends Popup {
   private initialTimer: number;

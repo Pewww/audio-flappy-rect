@@ -1,6 +1,6 @@
-import {DEFAULT_MAX_VOLUME} from '../constants/game';
-import Obstacle from './obstacle';
-import GameObject from './gameObject';
+import {DEFAULT_MAX_VOLUME} from '../../constants/game';
+import Obstacle from './Obstacle';
+import GameObject from './GameObject';
 
 export default class Character extends GameObject {
   isCollided: boolean;
