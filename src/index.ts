@@ -2,7 +2,7 @@ import {getPermission, handlePermission} from './lib/permission';
 import Game from './models/Game';
 import {SettingPopup} from './models/popups';
 import {GAME_STATUS, MAP_SIZE} from './constants/game';
-import {SettingAudioController} from './models/controllers';
+import {SettingAudioController} from './controllers';
 
 (async function main() {
   const startBtn = document.getElementById('start-btn');
