@@ -3,7 +3,8 @@ import Obstacle from './Obstacle';
 import GameObject from './GameObject';
 
 export default class Character extends GameObject {
-  isCollided: boolean;
+  public isCollided: boolean;
+  private collidedWith: Obstacle;
 
   constructor(mapWidth: number, mapHeight: number, color: string) {
     super({
@@ -15,6 +16,7 @@ export default class Character extends GameObject {
     });
     this.setPosition(50, this.mapHeight - this.height);
     this.isCollided = false;
+    this.collidedWith = null;
   }
 
   public notify(volumn: number, obstacles: Obstacle[], ctx: CanvasRenderingContext2D) {
@@ -42,6 +44,27 @@ export default class Character extends GameObject {
     );
 
     this.drawCharacterFace(x, y, ctx);
+    // if (this.isCollided) {
+    //   console.log("current x and y", x, y);
+    //   console.log(this.collidedWith)
+    //   // const currX = x;
+    //   // const currY = this.collidedWith.direction === 'top'
+    //   //   ? this.collidedWith.height
+    //   //   : this.mapHeight - this.collidedWith.height - this.height;
+
+    //   // console.log("obstacle", this.collidedWith)
+    //   // console.log("me", this.width, this.height, this.position)
+    //   // ctx.fillStyle = this.color;
+    //   // ctx.fillRect(
+    //   //   currX,
+    //   //   currY,
+    //   //   this.width,
+    //   //   this.height
+    //   // )
+    //   // this.drawCharacterFace(currX, currY, ctx)
+    // } else {
+      
+    // }
   }
 
   private drawCharacterFace(x: number, y: number, ctx: CanvasRenderingContext2D) {
@@ -78,11 +101,18 @@ export default class Character extends GameObject {
     const isXPositionCollided = x + this.width > bottomObstacle.position.x
       && bottomObstacle.position.x > 0;
 
-    const isYPositionCollided = y < (topObstacle.position.y + topObstacle.height)
-      || y > (this.mapHeight - bottomObstacle.height - this.height);
+    const isTopYPositionCollided = y < topObstacle.height;
+    const isBottomYPositionCollided = y > (this.mapHeight - bottomObstacle.height - this.height);
+
+    const isYPositionCollided = isTopYPositionCollided
+      || isBottomYPositionCollided;
 
     if (isXPositionCollided && isYPositionCollided) {
       this.isCollided = true;
+      this.collidedWith = isTopYPositionCollided
+        ? topObstacle
+        : bottomObstacle;
+
       return;
     }
   }

@@ -50,7 +50,9 @@ async function startGame() {
   } = MAP_SIZE;
 
   const canvas = document.getElementById('map') as HTMLCanvasElement;
-  const ctx = canvas.getContext('2d');
+  const ctx = canvas.getContext('2d', {
+    alpha: false
+  });
 
   canvas.width = mapWidth;
   canvas.height = mapHeight;

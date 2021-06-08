@@ -56,6 +56,7 @@ export default class Game {
   public update() {
     if (this.character.isCollided) {
       this.status = GAME_STATUS.OVER;
+      return;
     }
 
     this.frameNo += 1;
