@@ -1,4 +1,4 @@
-import {PERMISSION_STATUS} from '../constants/permission';
+import { PERMISSION_STATUS } from "../constants/permission";
 
 interface HandlePermissionParams {
   onGranted: () => void;
@@ -7,8 +7,8 @@ interface HandlePermissionParams {
 }
 
 export async function checkPermission(): Promise<PermissionState> {
-  const {state} = await window.navigator.permissions.query({
-    name: 'microphone'
+  const { state } = await window.navigator.permissions.query({
+    name: "microphone",
   });
 
   return state;
@@ -16,7 +16,7 @@ export async function checkPermission(): Promise<PermissionState> {
 
 export async function getPermission() {
   const stream = await window.navigator.mediaDevices.getUserMedia({
-    audio: true
+    audio: true,
   });
 
   return stream;
@@ -25,11 +25,11 @@ export async function getPermission() {
 export async function handlePermission({
   onGranted,
   onPrompt,
-  onDenied
+  onDenied,
 }: HandlePermissionParams) {
   const permissionState = await checkPermission();
 
-  switch(permissionState) {
+  switch (permissionState) {
     case PERMISSION_STATUS.GRANTED:
       onGranted();
       break;

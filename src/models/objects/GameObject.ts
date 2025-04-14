@@ -19,13 +19,7 @@ export default class GameObject {
   mapHeight: number;
   position: IPosition;
 
-  constructor({
-    width,
-    height,
-    mapWidth,
-    mapHeight,
-    color
-  }: Props) {
+  constructor({ width, height, mapWidth, mapHeight, color }: Props) {
     this.width = width;
     this.height = height;
     this.mapWidth = mapWidth;
@@ -36,7 +30,7 @@ export default class GameObject {
   public setPosition(x: number, y: number) {
     this.position = {
       x,
-      y
+      y,
     };
   }
 }
