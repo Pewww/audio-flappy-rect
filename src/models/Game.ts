@@ -76,7 +76,7 @@ export default class Game {
     }
 
     this.frameNo += 1;
-    this.appendObstaclePerTime(125);
+    this.appendObstaclePerTime(200);
     this.checkScore();
     this.removeOutOfMapObstacle();
   }

@@ -1,5 +1,5 @@
-import AudioController from './AudioController';
-import {SettingPopup} from '../models/popups';
+import AudioController from "./AudioController";
+import { SettingPopup } from "../models/popups";
 
 export default class SettingAudioController extends AudioController {
   private settingPopup: SettingPopup;
@@ -10,7 +10,7 @@ export default class SettingAudioController extends AudioController {
   }
 
   public notifyAnalysedDataToCharacter() {
-    this.analyseFrequencyData();
+    this.analyseSoundData();
 
     const volume = this.convertDataToVolume();
     this.settingPopup.notify(volume);

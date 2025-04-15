@@ -1,6 +1,6 @@
-import AudioController from './AudioController';
-import {Character} from '../models/objects';
-import Game from '../models/Game';
+import AudioController from "./AudioController";
+import { Character } from "../models/objects";
+import Game from "../models/Game";
 
 export default class GameAudioController extends AudioController {
   private character: Character;
@@ -13,7 +13,7 @@ export default class GameAudioController extends AudioController {
   }
 
   public notifyAnalysedDataToCharacter(ctx: CanvasRenderingContext2D) {
-    this.analyseFrequencyData();
+    this.analyseSoundData();
 
     const volume = this.convertDataToVolume();
     this.character.notify(volume, this.game.obstacles, ctx);
