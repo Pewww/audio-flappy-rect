@@ -20,7 +20,7 @@ Webpack과 Typescript로 개발 환경을 세팅하였고, Canvas를 활용하�
 
 ## 방법
 
-**[Game Start](https://d3g50b71je6yeq.cloudfront.net)**
+**[Game Start](https://darling-macaron-6389bf.netlify.app/)**
 
 1. 세팅 아이콘을 눌러 게임 내에서 사용할(?) 가장 큰 소리를 설정한다. (기본 값은 20,000)
 
